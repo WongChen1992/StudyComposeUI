@@ -20,9 +20,22 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,23 +44,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.androiddevchallenge.data.Cat
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.viewmodel.MainViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.Text
-import androidx.compose.material.Button
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.aspectRatio
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity() {
                 Box {
                     Column {
                         TopAppBar(
-                                title = {
-                                    Text("Cat Cat")
-                                }
+                            title = {
+                                Text("Cat Cat")
+                            }
                         )
                         CatList()
                     }
@@ -71,7 +71,6 @@ class MainActivity : AppCompatActivity() {
                         CatDetails(currentCat)
                     }
                 }
-
             }
         }
     }
@@ -100,16 +99,17 @@ fun CatList() {
 fun CatItem(data: Cat) {
     val viewModel: MainViewModel = viewModel()
     Row(
-            Modifier
-                    .padding(16.dp, 16.dp, 16.dp, 0.dp)
-                    .fillMaxWidth()
-                    .clickable {
-                        viewModel.currentCat = data
-                    }) {
+        Modifier
+            .padding(16.dp, 16.dp, 16.dp, 0.dp)
+            .fillMaxWidth()
+            .clickable {
+                viewModel.currentCat = data
+            }
+    ) {
         Image(
-                painter = painterResource(data.catImgId),
-                contentDescription = data.name,
-                Modifier.size(100.dp)
+            painter = painterResource(data.catImgId),
+            contentDescription = data.name,
+            Modifier.size(100.dp)
         )
         Column(Modifier.padding(12.dp)) {
             Text(text = data.name, style = MaterialTheme.typography.h6)
@@ -122,38 +122,44 @@ fun CatItem(data: Cat) {
 @Composable
 fun CatDetails(data: Cat) {
     Column(
-            Modifier
-                    .fillMaxSize()
-                    .background(Color.White)
+        Modifier
+            .fillMaxSize()
+            .background(Color.White)
     ) {
         Image(
-                painterResource(data.catImgId),
-                data.name,
-                Modifier.aspectRatio(1f),
-                contentScale = ContentScale.Crop
+            painterResource(data.catImgId),
+            data.name,
+            Modifier.aspectRatio(1f),
+            contentScale = ContentScale.Crop
         )
         Text(
-                text = data.name, Modifier
-                .padding(10.dp), style = MaterialTheme.typography.h4
+            text = data.name,
+            Modifier
+                .padding(10.dp),
+            style = MaterialTheme.typography.h4
         )
         Text(
-                text = "location: " + data.location, Modifier
+            text = "location: " + data.location,
+            Modifier
                 .padding(5.dp)
         )
         Text(
-                text = "age: " + data.age + " year-old", Modifier
+            text = "age: " + data.age + " year-old",
+            Modifier
                 .padding(5.dp)
         )
         Text(
-                text = data.content, Modifier
-                .padding(5.dp), style = MaterialTheme.typography.h6
+            text = data.content,
+            Modifier
+                .padding(5.dp),
+            style = MaterialTheme.typography.h6
         )
         Button(
-                onClick = { }, Modifier
+            onClick = { },
+            Modifier
                 .padding(16.dp)
                 .align(Alignment.End)
-        )
-        {
+        ) {
             Text(text = "Adopt")
         }
     }
@@ -163,6 +169,6 @@ fun CatDetails(data: Cat) {
 @Composable
 fun DogDetailsPreview() {
     CatDetails(
-            Cat("Juno", "Rome", "1.2", "Very, very cute!", R.drawable.cat_1)
+        Cat("Juno", "Rome", "1.2", "Very, very cute!", R.drawable.cat_1)
     )
 }
