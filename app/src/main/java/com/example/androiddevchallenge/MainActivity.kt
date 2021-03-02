@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity() {
                 Box {
                     Column {
                         TopAppBar(
-                            title = {
-                                Text("Cat Cat")
-                            }
+                                title = {
+                                    Text("Cat Cat")
+                                }
                         )
                         CatList()
                     }
@@ -100,16 +100,16 @@ fun CatList() {
 fun CatItem(data: Cat) {
     val viewModel: MainViewModel = viewModel()
     Row(
-        Modifier
-            .padding(16.dp, 16.dp, 16.dp, 0.dp)
-            .fillMaxWidth()
-            .clickable {
-                viewModel.currentCat = data
-            }) {
+            Modifier
+                    .padding(16.dp, 16.dp, 16.dp, 0.dp)
+                    .fillMaxWidth()
+                    .clickable {
+                        viewModel.currentCat = data
+                    }) {
         Image(
-            painter = painterResource(data.catImgId),
-            contentDescription = data.name,
-            Modifier.size(100.dp)
+                painter = painterResource(data.catImgId),
+                contentDescription = data.name,
+                Modifier.size(100.dp)
         )
         Column(Modifier.padding(12.dp)) {
             Text(text = data.name, style = MaterialTheme.typography.h6)
@@ -122,34 +122,34 @@ fun CatItem(data: Cat) {
 @Composable
 fun CatDetails(data: Cat) {
     Column(
-        Modifier
-            .fillMaxSize()
-            .background(Color.White)
+            Modifier
+                    .fillMaxSize()
+                    .background(Color.White)
     ) {
         Image(
-            painterResource(data.catImgId),
-            data.name,
-            Modifier.aspectRatio(1f),
-            contentScale = ContentScale.Crop
+                painterResource(data.catImgId),
+                data.name,
+                Modifier.aspectRatio(1f),
+                contentScale = ContentScale.Crop
         )
         Text(
-            text = data.name, Modifier
+                text = data.name, Modifier
                 .padding(10.dp), style = MaterialTheme.typography.h4
         )
         Text(
-            text = "location: " + data.location, Modifier
+                text = "location: " + data.location, Modifier
                 .padding(5.dp)
         )
         Text(
-            text = "age: " + data.age + " year-old", Modifier
+                text = "age: " + data.age + " year-old", Modifier
                 .padding(5.dp)
         )
         Text(
-            text = data.content, Modifier
+                text = data.content, Modifier
                 .padding(5.dp), style = MaterialTheme.typography.h6
         )
         Button(
-            onClick = { }, Modifier
+                onClick = { }, Modifier
                 .padding(16.dp)
                 .align(Alignment.End)
         )
@@ -163,6 +163,6 @@ fun CatDetails(data: Cat) {
 @Composable
 fun DogDetailsPreview() {
     CatDetails(
-        Cat("Juno", "Rome", "1.2", "Very, very cute!", R.drawable.cat_1)
+            Cat("Juno", "Rome", "1.2", "Very, very cute!", R.drawable.cat_1)
     )
 }
