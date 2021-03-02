@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     val currentCat = viewModel.currentCat
-                    if (currentCat != null){
+                    if (currentCat != null) {
                         CatDetails(currentCat)
                     }
                 }
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         if (viewModel.currentCat != null) {
             viewModel.cleanCat()
         } else {
-        super.onBackPressed()
+            super.onBackPressed()
         }
     }
 }
@@ -138,10 +138,12 @@ fun CatDetails(data: Cat) {
             text = data.content, Modifier
                 .padding(5.dp), style = MaterialTheme.typography.h6
         )
-        Button(onClick = {  },Modifier
-            .padding(16.dp)
-            .align(Alignment.End))
-            {
+        Button(
+            onClick = { }, Modifier
+                .padding(16.dp)
+                .align(Alignment.End)
+        )
+        {
             Text(text = "Adopt")
         }
     }

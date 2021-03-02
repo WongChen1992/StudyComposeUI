@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.Cat
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
 class MainViewModel : ViewModel() {
@@ -22,11 +21,7 @@ class MainViewModel : ViewModel() {
         )
     )
 
-    var currentCat : Cat? by mutableStateOf(null)
-
-    fun setCat(cat: Cat) {
-        currentCat = cat
-    }
+    var currentCat: Cat? by mutableStateOf(null)
 
     fun cleanCat() {
         currentCat = null
